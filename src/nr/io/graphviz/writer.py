@@ -25,7 +25,7 @@ class GraphvizWriter:
         # TODO (@NiklasRosenstein): Improve escaping logic.
         if "\n" in name:
             raise ValueError("Cannot have newline (contained in {name!r})")
-        if " " in name or "," in name or "." in name:
+        if " " in name or "," in name or "." in name or ":" in name:
             name = f'"{name}"'
         return name
 

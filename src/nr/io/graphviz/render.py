@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 import http.server
+import logging
 import subprocess as sp
 import tempfile
 import webbrowser
 from pathlib import Path
 from typing import overload
+
+logger = logging.getLogger(__name__)
 
 
 @overload
@@ -22,7 +25,11 @@ def render(graphviz_code: str, format: str, algorithm: str = "dot", *, output_fi
     command = [algorithm, f"-T{format}"]
     if output_file is not None:
         command += ["-o", str(output_file)]
-    process = sp.run(command, input=graphviz_code.encode(), check=True, capture_output=True)
+    try:
+        process = sp.run(command, input=graphviz_code.encode(), check=True, capture_output=True)
+    except sp.CalledProcessError as exc:
+        logger.error("%s: %s", exc, exc.stderr.decode())
+        raise
     return process.stdout
 
 
