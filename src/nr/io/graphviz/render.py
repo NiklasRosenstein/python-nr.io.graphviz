@@ -5,7 +5,7 @@ import subprocess as sp
 import tempfile
 import webbrowser
 from pathlib import Path
-from typing import Any, overload
+from typing import overload
 
 
 @overload
