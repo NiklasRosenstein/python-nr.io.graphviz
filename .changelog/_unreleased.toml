@@ -1,0 +1,5 @@
+[[entries]]
+id = "e0f78723-7430-421a-9516-d31c7a4c4130"
+type = "fix"
+description = "add more characters on which to detect that quoting is necessary"
+author = "@NiklasRosenstein"
